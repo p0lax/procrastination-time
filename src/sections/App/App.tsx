@@ -1,13 +1,10 @@
 import React from 'react';
+import { root } from './App.module.css';
 
 export default function App() {
-  const a = 1;
   return (
-    <div className="container is-max-desktop">
-      <div className="notification is-primary">
-        This container has a <code>max-width</code> of{' '}
-        <code>$desktop - $container-offset</code> on widescreen and fullhd.
-      </div>
+    <div className="container is-fullhd">
+      <div className={root}>2132131</div>
     </div>
   );
 }
