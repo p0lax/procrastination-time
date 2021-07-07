@@ -4,7 +4,12 @@
     "baseUrl": "./src",
     "paths": {
       "~*": ["./*"]
-    }
+    },
+    "noEmit": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true
   },
   "include": ["src/**/*"]
 }
