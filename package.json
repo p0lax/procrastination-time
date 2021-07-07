@@ -1,0 +1,21 @@
+{
+  "name": "procrastination-time",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:p0lax/procrastination-time.git",
+  "author": "p0lax <polax@list.ru>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "parcel-bundler": "^1.12.5",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
