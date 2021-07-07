@@ -1,6 +1,7 @@
 import React from 'react';
 
 export default function App() {
+  const a = 1;
   return (
     <div className="container is-max-desktop">
       <div className="notification is-primary">
