@@ -9,6 +9,7 @@ export default function Router() {
         <Switch>
           <Route path="/about">1111</Route>
           <Route path="/users">2222</Route>
+          <Route path="/scene/:id">Scene</Route>
           <Route path="/">
             <App />
           </Route>

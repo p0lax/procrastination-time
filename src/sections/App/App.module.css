@@ -1,3 +1,10 @@
-.root {
-  color: red;
+.cards {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.title {
+  text-align: center;
 }
