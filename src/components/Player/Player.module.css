@@ -1,0 +1,10 @@
+.root {
+  position: absolute;
+  top: 100px;
+  left: 50px;
+}
+
+.root .icon {
+  width: 20px;
+  height: 20px;
+}

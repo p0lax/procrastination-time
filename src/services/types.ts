@@ -3,4 +3,5 @@ export interface CardType {
   title: string;
   description: string;
   img: string;
+  sound: string;
 }
