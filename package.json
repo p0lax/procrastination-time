@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "parcel src/index.html",
-    "build": "parcel build src/index.html",
+    "build": "parcel build src/index.html --dist-dir doc",
     "lint": "tsc -p tsconfig.json --noEmit && eslint src/ --ext .ts --ext .tsx",
     "precommit": "lint-staged"
   },
@@ -16,9 +16,9 @@
     "@parcel/transformer-sass": "2.0.0-nightly.755",
     "@types/react": "17.0.14",
     "@types/react-dom": "17.0.9",
-    "autoprefixer": "^9.8.6",
+    "autoprefixer": "9.8.6",
     "babel-eslint": "10.1.0",
-    "classnames": "^2.3.1",
+    "classnames": "2.3.1",
     "eslint": "7.30.0",
     "eslint-plugin-react": "7.24.0",
     "husky": "7.0.1",
