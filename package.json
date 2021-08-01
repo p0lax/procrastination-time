@@ -1,7 +1,6 @@
 {
   "name": "procrastination-time",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "git@github.com:p0lax/procrastination-time.git",
   "author": "p0lax <polax@list.ru>",
   "license": "MIT",
