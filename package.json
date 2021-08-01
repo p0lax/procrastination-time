@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "parcel src/index.html",
-    "build": "parcel build src/index.html --dist-dir doc",
+    "build": "parcel build src/index.html --dist-dir docs",
     "lint": "tsc -p tsconfig.json --noEmit && eslint src/ --ext .ts --ext .tsx",
     "precommit": "lint-staged"
   },
