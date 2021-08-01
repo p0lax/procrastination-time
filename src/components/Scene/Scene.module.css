@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  overflow: auto;
+  overflow-x: hidden;
 }
 
 div.scene figure.image {
@@ -15,7 +15,19 @@ div.scene figure.image {
 .image img {
   height: 100%;
   width: 100%;
-  object-fit: contain;
+  animation: scaling 20s linear infinite alternate;
+}
+
+@keyframes scaling {
+  0% {
+    transform: translate(0%, 0%) scale(1);
+  }
+  50% {
+    transform: translate(-10%, -10%) scale(1.25);
+  }
+  100% {
+    transform: translate(10%, 10%) scale(1.5);
+  }
 }
 
 .menuWrapper {
