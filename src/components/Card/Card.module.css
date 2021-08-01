@@ -1,4 +1,14 @@
 .card {
   width: 300px;
   margin-top: 20px;
+  cursor: pointer;
+}
+
+.imageWrapper {
+  height: 200px;
+}
+
+.imageWrapper figure,
+.imageWrapper figure img {
+  height: 100%;
 }

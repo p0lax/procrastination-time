@@ -15,7 +15,7 @@ export default function Card(props: CardType) {
 
   return (
     <div className={cn('card', styles.card)} onClick={goToScene}>
-      <div className="card-image">
+      <div className={cn('card-image', styles.imageWrapper)}>
         <figure className="image">
           <img src={img} alt={title} />
         </figure>
