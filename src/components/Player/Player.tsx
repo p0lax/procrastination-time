@@ -1,77 +1,37 @@
 import classNames from 'classnames';
-import React, { useEffect, useState } from 'react';
-import { roundOff } from '~src/utils/math';
+import React from 'react';
+import { useAudio } from '~src/hooks/useAudio';
 import styles from './Player.module.css';
 
 interface PlayerProps {
   url: string;
 }
 
-const VOLUME_STEP = 0.1;
-const DEFAULT_VOLUME = 0.5;
-
-const useAudio = (url: string) => {
-  const [audio] = useState(new Audio(url));
-  const [playing, setPlaying] = useState(false);
-  const [volume, setVolume] = useState(DEFAULT_VOLUME);
-
-  const toggle = () => setPlaying(!playing);
-  const levelUp = () => {
-    if (volume < 1) {
-      const value = roundOff(volume + VOLUME_STEP, 1);
-      setVolume(value);
-      audio.volume = value;
-    }
-  };
-
-  const levelDown = () => {
-    if (volume > 0) {
-      const value = roundOff(volume - VOLUME_STEP, 1);
-      setVolume(value);
-      audio.volume = value;
-    }
-  };
-
-  useEffect(() => {
-    audio.loop = true;
-
-    return () => {
-      audio.pause();
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!playing) {
-      audio.pause();
-      return;
-    }
-    audio.play();
-  }, [playing]);
-
-  return {
-    playing,
-    toggle,
-    volume,
-    levelUp,
-    levelDown,
-  };
-};
-
 function Player(props: PlayerProps) {
   const { playing, volume, toggle, levelUp, levelDown } = useAudio(props.url);
+
+  const playClassName = classNames('fas', styles.playIcon, styles.icon, {
+    'fa-play': !playing,
+    'fa-pause': playing,
+  });
   return (
     <div className={styles.root}>
-      {volume}
-      <button type="button" onClick={toggle}>
-        {playing ? 'Pause' : 'Play'}
-      </button>
-      <button type="button" onClick={levelUp}>
-        +
-      </button>
-      <button type="button" onClick={levelDown}>
-        -
-      </button>
-      <i className={classNames('fa-solid fa-plus', styles.icon)}></i>
+      <div className={styles.playWrapper} onClick={toggle}>
+        <i className={playClassName}></i>
+      </div>
+      <div className={styles.volumeWrapper}>
+        <span className={styles.value}>{volume * 100} % </span>
+        <div className={styles.controls}>
+          <i
+            className={classNames('fas fa-plus', styles.icon)}
+            onClick={levelUp}
+          ></i>
+          <i
+            className={classNames('fas fa-minus', styles.icon)}
+            onClick={levelDown}
+          ></i>
+        </div>
+      </div>
     </div>
   );
 }

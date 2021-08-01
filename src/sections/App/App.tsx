@@ -7,7 +7,7 @@ import styles from './App.module.css';
 
 export default function App() {
   return (
-    <div className="container is-fullhd">
+    <div className={cn('container is-fullhd', styles.container)}>
       <h1 className={cn('title is-1', styles.title)}>
         Choose your way to meditate
       </h1>
