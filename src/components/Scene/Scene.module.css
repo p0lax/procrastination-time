@@ -57,3 +57,19 @@ div.scene figure.image {
   font-size: 50px;
   cursor: pointer;
 }
+
+@media screen and (max-device-width: 600px) {
+  .scene {
+    background-color: #fffaeb;
+  }
+
+  div.scene figure.image {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .menuWrapper {
+    margin: 0 20px;
+  }
+}
