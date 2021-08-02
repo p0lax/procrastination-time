@@ -1,20 +1,38 @@
-.root {
+.menuWrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50px;
+  margin: 0 50px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   color: #fff;
 }
 
-.root .icon {
+.menuWrapper .icon {
   width: 20px;
   height: 20px;
   text-align: center;
   cursor: pointer;
 }
 
+.backItemWrapper {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.backBtn {
+  font-size: 50px;
+  cursor: pointer;
+}
+
 .playWrapper {
-  position: absolute;
-  left: 50%;
   width: 100px;
   height: 100px;
   display: flex;
@@ -35,15 +53,15 @@
   flex-direction: row;
   align-items: center;
   height: 100px;
-  width: 140px;
-  padding: 20px;
+  width: 100px;
+  padding: 10px;
   background-color: rgba(0, 0, 0, 0.2);
 }
 
 .volumeWrapper .value {
   margin-right: 10px;
-  font-size: 20px;
-  line-height: 20px;
+  font-size: 1.1em;
+  line-height: 1.1em;
 }
 
 .volumeWrapper .controls {
@@ -56,4 +74,10 @@
   font-size: 30px;
   width: 30px;
   height: 30px;
+}
+
+@media screen and (max-device-width: 600px) {
+  .menuWrapper {
+    margin: 0 20px;
+  }
 }
