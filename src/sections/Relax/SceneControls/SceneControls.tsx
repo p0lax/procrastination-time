@@ -6,18 +6,24 @@ import styles from './SceneControls.module.css';
 
 interface SceneControlsProps {
   url: string;
+  onPlay: () => void;
 }
 
 function SceneControls(props: SceneControlsProps) {
   const { playing, volume, toggle, levelUp, levelDown } = useAudio(props.url);
-  const moveBack = () => {
-    history.goBack();
-  };
+
   let history = useHistory();
   const playClassName = cn('fas', styles.playIcon, styles.icon, {
     'fa-play': !playing,
     'fa-pause': playing,
   });
+  const moveBack = () => {
+    history.goBack();
+  };
+  const onPlay = () => {
+    toggle();
+    props.onPlay();
+  };
   return (
     <div className={styles.menuWrapper}>
       <div className={styles.backItemWrapper}>
@@ -26,7 +32,7 @@ function SceneControls(props: SceneControlsProps) {
           onClick={moveBack}
         ></i>
       </div>
-      <div className={styles.playWrapper} onClick={toggle}>
+      <div className={styles.playWrapper} onClick={onPlay}>
         <i className={playClassName}></i>
       </div>
       <div className={styles.volumeWrapper}>

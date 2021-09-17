@@ -16,14 +16,22 @@
     rgba(0, 0, 0, 0.1) 50%
   );
   background-size: 100% 200%;
-  animation: background_color 5s linear forwards;
+  animation: background_color 1500s linear forwards;
+  animation-play-state: paused;
+}
+
+.timer.running,
+.timer.running .timerValue {
+  animation-play-state: running;
 }
 
 .timerValue {
   color: #fff;
   font-size: 72px;
   margin-top: -10px;
-  animation: timer_beat 1s linear infinite;
+  animation: timer_beat 1s ease-in-out infinite;
+  animation-delay: 0.5s;
+  animation-play-state: paused;
 }
 
 @keyframes background_color {

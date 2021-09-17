@@ -16,6 +16,11 @@ div.scene figure.image {
   height: 100%;
   width: 100%;
   animation: scaling 20s linear infinite alternate;
+  animation-play-state: paused;
+}
+
+.image.running img {
+  animation-play-state: running;
 }
 
 @keyframes scaling {

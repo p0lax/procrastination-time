@@ -5,3 +5,5 @@ export interface CardType {
   img: string;
   sound: string;
 }
+
+export type AnimationStatus = 'running' | 'paused';
