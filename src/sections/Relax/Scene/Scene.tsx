@@ -9,7 +9,7 @@ import styles from './Scene.module.css';
 
 type AnimationStatus = 'running' | 'paused';
 const SECOND = 1000;
-const COUNTDOWN_SIZE = 1 * 10 * SECOND;
+const COUNTDOWN_SIZE = 25 * 60 * SECOND;
 
 function Scene() {
   let { id } = useParams();

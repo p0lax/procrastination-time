@@ -8,15 +8,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid #fff;
+  border: 1px solid #bad072;
   border-radius: 50%;
 
   background-image: linear-gradient(
-    rgba(255, 255, 255, 0.3),
+    rgba(186, 208, 114, 0.5),
     rgba(0, 0, 0, 0.1) 50%
   );
   background-size: 100% 200%;
-  animation: background_color 60s linear forwards;
+  animation: background_color 1500s linear forwards;
   animation-play-state: paused;
 }
 
