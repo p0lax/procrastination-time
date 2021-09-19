@@ -1,58 +1,56 @@
-import React, { useCallback, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { observer } from 'mobx-react';
 import cn from 'classnames';
 import { CardType } from '~src/services/types';
 import { useParams } from 'react-router-dom';
 import { CARDS } from '~src/sections/constants';
 import SceneControls from '../SceneControls/SceneControls';
 import Timer from '../Timer/Timer';
+import TimerStore from '~src/stores/TimerStore';
 import styles from './Scene.module.css';
 
-type AnimationStatus = 'running' | 'paused';
-const SECOND = 1000;
-const COUNTDOWN_SIZE = 25 * 60 * SECOND;
+interface SceneProps {
+  store: TimerStore;
+}
 
-function Scene() {
+function Scene(props: SceneProps) {
   let { id } = useParams();
   const card: CardType = CARDS.find((item) => item.id === id);
-  const [status, setStatus] = useState<AnimationStatus>('paused');
-  const [time, setTime] = useState(COUNTDOWN_SIZE);
-  const [timer, setTimer] = useState(null);
+  const { store } = props;
 
-  const timerTask = () => {
-    setTime((time) => {
-      if (time <= 0) {
-        return COUNTDOWN_SIZE;
-      }
-      return time - SECOND;
-    });
-  };
+  useEffect(() => {
+    store.reset();
+  }, []);
 
   const onTimerToggle = () => {
-    const newStatus = status === 'running' ? 'paused' : 'running';
-    setStatus(newStatus);
-    if (newStatus === 'running') {
-      clearInterval(timer);
-      const newTimer = setInterval(timerTask, SECOND);
-      setTimer(newTimer);
-    } else {
-      clearInterval(timer);
+    if (store.status === 'running') {
+      store.stop();
+      return;
     }
+    store.start();
   };
 
   const imageClassName = cn('image', styles.image, {
-    [styles.running]: status === 'running',
+    [styles.running]: store.status === 'running',
   });
 
-  return (
-    <div className={cn('content', styles.scene)}>
+  const image = useMemo(
+    () => (
       <figure className={imageClassName}>
         <img src={card.img} alt={card.title} />
       </figure>
+    ),
+    [store.status]
+  );
+
+  return (
+    <div className={cn('content', styles.scene)}>
+      {image}
 
       <SceneControls url={card.sound} onPlay={onTimerToggle} />
-      <Timer time={time} status={status} />
+      <Timer time={store.countdown} status={store.status} />
     </div>
   );
 }
 
-export default Scene;
+export default observer(Scene);
