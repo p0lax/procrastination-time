@@ -16,7 +16,7 @@
     rgba(0, 0, 0, 0.4) 50%
   );
   background-size: 100% 200%;
-  animation: background_color 10s linear forwards;
+  animation: background_color 1500s linear forwards;
   animation-play-state: paused;
 }
 
