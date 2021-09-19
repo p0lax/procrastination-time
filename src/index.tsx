@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Router from './sections/App/Router';
+import Router from './sections/Router';
 import 'bulma';
 import './index.css';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import App from './App';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Scene from '../Relax/Scene/Scene';
+import Scene from './Relax/Scene/Scene';
 
 export default function Router() {
   return (

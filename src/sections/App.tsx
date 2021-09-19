@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
-import Card from '../Relax/Card/Card';
-import { CARDS } from '../constants';
+import Card from './Relax/Card/Card';
+import { CARDS } from './constants';
 
 import styles from './App.module.css';
 
