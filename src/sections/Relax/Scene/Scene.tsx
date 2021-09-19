@@ -8,6 +8,7 @@ import SceneControls from '../SceneControls/SceneControls';
 import Timer from '../Timer/Timer';
 import TimerStore from '~src/stores/TimerStore';
 import styles from './Scene.module.css';
+import { rootStore } from '~src/stores';
 
 interface SceneProps {
   store: TimerStore;
@@ -16,22 +17,22 @@ interface SceneProps {
 function Scene(props: SceneProps) {
   let { id } = useParams();
   const card: CardType = CARDS.find((item) => item.id === id);
-  const { store } = props;
+  const { countdown, status } = props.store;
 
   useEffect(() => {
-    store.reset();
+    props.store.reset();
   }, []);
 
   const onTimerToggle = () => {
-    if (store.status === 'running') {
-      store.stop();
+    if (status === 'running') {
+      props.store.stop();
       return;
     }
-    store.start();
+    props.store.start();
   };
 
   const imageClassName = cn('image', styles.image, {
-    [styles.running]: store.status === 'running',
+    [styles.running]: status === 'running',
   });
 
   const image = useMemo(
@@ -40,15 +41,19 @@ function Scene(props: SceneProps) {
         <img src={card.img} alt={card.title} />
       </figure>
     ),
-    [store.status]
+    [status]
   );
 
   return (
     <div className={cn('content', styles.scene)}>
       {image}
 
-      <SceneControls url={card.sound} onPlay={onTimerToggle} />
-      <Timer time={store.countdown} status={store.status} />
+      <SceneControls
+        url={card.sound}
+        onPlay={onTimerToggle}
+        store={rootStore.audioStore}
+      />
+      <Timer time={countdown} status={status} />
     </div>
   );
 }

@@ -13,6 +13,6 @@ This is a small front-end application for tracking work activities and better im
 - [x] Add predefined sounds of nature and city
 - [x] Add background images and their animation
 - [x] Add 25 minutes timer with CSS animation
-- [] Add end-time sounds and correct restarting of timer
-- [] Add feature advanced sounds tuning via Audio Context
-- [] Add feature advanced sounds tuning via Audio Context
+- [ ] Add end-time sounds and correct restarting of timer
+- [ ] Add feature advanced sounds tuning via Audio Context
+- [ ] Add feature advanced sounds tuning via Audio Context
