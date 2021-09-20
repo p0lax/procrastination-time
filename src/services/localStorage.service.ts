@@ -1,7 +1,7 @@
-export function getTomerValue(id: string) {
+export function getValue(id: string) {
   localStorage.getItem(id);
 }
 
-export function setTomerValue(id: string, value: number) {
+export function setValue(id: string, value: number) {
   localStorage.setItem(id, String(value));
 }

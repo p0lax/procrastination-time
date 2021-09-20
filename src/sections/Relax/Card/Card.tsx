@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import styles from './Card.module.css';
 
 export default function Card(props: CardType) {
-  const { id, title, description, img } = props;
+  const { id, title, description } = props;
   const history = useHistory();
 
   const goToScene = () => {
@@ -17,7 +17,7 @@ export default function Card(props: CardType) {
     <div className={cn('card', styles.card)} onClick={goToScene}>
       <div className={cn('card-image', styles.imageWrapper)}>
         <figure className="image">
-          <img src={img} alt={title} />
+          <img src={`/assets/images/${id}_0.jpg`} alt={title} />
         </figure>
       </div>
       <div className="card-content">
