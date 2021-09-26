@@ -38,7 +38,7 @@ function Scene(props: SceneProps) {
   const image = useMemo(
     () => (
       <figure className={imageClassName}>
-        <img src={`/assets/images/${card.id}_0.jpg`} alt={card.title} />
+        <img src={`./assets/images/${card.id}_0.jpg`} alt={card.title} />
       </figure>
     ),
     [status]
