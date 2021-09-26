@@ -33,7 +33,6 @@ export class AudioFlowStore {
     this.audioSource.loop = true;
     this.audioGain.gain.value = 1;
     const file = await getSound(`${id}_0`);
-    console.log('file1Buffer = ', file);
     const fileBuffer = await this.audioContext.decodeAudioData(file.data);
     this.audioSource.buffer = fileBuffer;
     this.audioSource.connect(this.audioGain);
