@@ -17,7 +17,7 @@ export default function Card(props: CardType) {
     <div className={cn('card', styles.card)} onClick={goToScene}>
       <div className={cn('card-image', styles.imageWrapper)}>
         <figure className="image">
-          <img src={`/assets/images/${id}_0.jpg`} alt={title} />
+          <img src={`./assets/images/${id}_0.jpg`} alt={title} />
         </figure>
       </div>
       <div className="card-content">
