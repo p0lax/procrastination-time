@@ -38,7 +38,7 @@ function Scene(props: SceneProps) {
   const image = useMemo(
     () => (
       <figure className={imageClassName}>
-        <img src={card.img} alt={card.title} />
+        <img src={`/assets/images/${card.id}_0.jpg`} alt={card.title} />
       </figure>
     ),
     [status]
@@ -49,7 +49,7 @@ function Scene(props: SceneProps) {
       {image}
 
       <SceneControls
-        url={card.sound}
+        url={card.id}
         onPlay={onTimerToggle}
         store={rootStore.audioStore}
       />
