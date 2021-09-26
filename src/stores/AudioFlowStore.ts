@@ -8,6 +8,9 @@ const DEFAULT_VOLUME = 0.5;
 export class AudioFlowStore {
   rootStore;
   private audio = null;
+  private audioContext = null;
+  private audioSource = null;
+  private audioGain = null;
   isPlaying = false;
   volume: number = DEFAULT_VOLUME;
 
@@ -23,41 +26,33 @@ export class AudioFlowStore {
     this.rootStore = rootStore;
   }
 
-  init = (id: string) => {
-    this.audio = new Audio(`/assets/sounds/${id}_0.mp3`);
-  };
-
-  addContext = async () => {
-    const context = new AudioContext();
-    const source1 = context.createBufferSource();
-    const source2 = context.createBufferSource();
-    const file1 = await getSound(`train_0`);
-    const file2 = await getSound(`sea_0`);
-    console.log('file1Buffer = ', file1);
-    const file1Buffer = await context.decodeAudioData(file1.data);
-    const file2Buffer = await context.decodeAudioData(file2.data);
-    source1.buffer = file1Buffer;
-    source2.buffer = file2Buffer;
-    source1.connect(context.destination);
-    source2.connect(context.destination);
-    source1.start();
-    source2.start();
+  initContext = async (id: string) => {
+    this.audioContext = new AudioContext();
+    this.audioSource = this.audioContext.createBufferSource();
+    this.audioGain = this.audioContext.createGain();
+    this.audioSource.loop = true;
+    this.audioGain.gain.value = 1;
+    const file = await getSound(`${id}_0`);
+    console.log('file1Buffer = ', file);
+    const fileBuffer = await this.audioContext.decodeAudioData(file.data);
+    this.audioSource.buffer = fileBuffer;
+    this.audioSource.connect(this.audioGain);
+    this.audioGain.connect(this.audioContext.destination);
   };
 
   toggle = () => {
     this.isPlaying = !this.isPlaying;
     if (!this.isPlaying) {
-      this.audio.pause();
+      this.audioSource.stop();
       return;
     }
-    // this.audio.play();
-    this.addContext();
+    this.audioSource.start();
   };
 
   levelUp = () => {
     if (this.volume < 1) {
       const value = roundOff(this.volume + VOLUME_STEP, 1);
-      this.audio.volume = value;
+      this.audioGain.gain.value = value;
       this.volume = value;
     }
   };
@@ -65,16 +60,19 @@ export class AudioFlowStore {
   levelDown = () => {
     if (this.volume > 0) {
       const value = roundOff(this.volume - VOLUME_STEP, 1);
+      this.audioGain.gain.value = value;
       this.volume = value;
-      this.audio.volume = value;
     }
   };
 
   reset = () => {
-    this.audio.pause();
-    this.audio = null;
+    if (this.isPlaying) {
+      this.audioSource.stop();
+    }
     this.volume = DEFAULT_VOLUME;
     this.isPlaying = false;
-    this.context = null;
+    this.audioContext = null;
+    this.audioSource = null;
+    this.audioGain = null;
   };
 }

@@ -16,7 +16,7 @@ function SceneControls(props: SceneControlsProps) {
   const { store } = props;
 
   useEffect(() => {
-    store.init(props.url);
+    store.initContext(props.url);
 
     return () => {
       store.reset();
