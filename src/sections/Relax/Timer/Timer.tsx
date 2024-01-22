@@ -1,8 +1,7 @@
-import cn from 'classnames';
-import React from 'react';
-import { AnimationStatus } from '~src/services/types';
-import { zeroPad } from '~src/utils/string';
-import styles from './Timer.module.css';
+import cn from "classnames";
+import { AnimationStatus } from "services/types";
+import { zeroPad } from "utils/string";
+import styles from "./Timer.module.css";
 
 interface TimerProps {
   time: number;
@@ -12,7 +11,7 @@ interface TimerProps {
 function Timer(props: TimerProps) {
   const displayTime = new Date(props.time);
   const timerClassName = cn(styles.timer, {
-    [styles.running]: props.status === 'running',
+    [styles.running]: props.status === "running",
   });
   return (
     <div className={timerClassName}>

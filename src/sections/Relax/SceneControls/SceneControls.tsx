@@ -1,10 +1,9 @@
 import cn from 'classnames';
-import React, { useEffect } from 'react';
-import { useAudio } from '~src/hooks/useAudio';
-import { useHistory } from 'react-router-dom';
-import styles from './SceneControls.module.css';
 import { observer } from 'mobx-react';
-import { AudioFlowStore } from '~src/stores/AudioFlowStore';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AudioFlowStore } from 'stores/AudioFlowStore';
+import styles from './SceneControls.module.css';
 
 interface SceneControlsProps {
   store: AudioFlowStore;
@@ -23,13 +22,13 @@ function SceneControls(props: SceneControlsProps) {
     };
   }, []);
 
-  let history = useHistory();
+  const navigate = useNavigate();
   const playClassName = cn('fas', styles.playIcon, styles.icon, {
     'fa-play': !store.isPlaying,
     'fa-pause': store.isPlaying,
   });
   const moveBack = () => {
-    history.goBack();
+    navigate(-1);
   };
   const onPlay = () => {
     store.toggle();

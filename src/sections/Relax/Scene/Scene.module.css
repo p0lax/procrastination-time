@@ -13,6 +13,7 @@ div.scene figure.image {
 }
 
 .image img {
+  position: relative;
   height: 100%;
   width: 100%;
   animation: scaling 20s linear infinite alternate;

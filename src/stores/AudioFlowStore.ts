@@ -1,20 +1,21 @@
 import { makeObservable, observable, action } from 'mobx';
-import { getSound } from '~src/services/audio.service';
-import { roundOff } from '~src/utils/math';
+import { getSound } from 'services/audio.service';
+import { roundOff } from 'utils/math';
+import { RootStore } from './RootStore';
 
 const VOLUME_STEP = 0.1;
 const DEFAULT_VOLUME = 0.5;
 
 export class AudioFlowStore {
   rootStore;
-  private audio = null;
-  private audioContext = null;
-  private audioSource = null;
-  private audioGain = null;
+  // private audio = null;
+  private audioContext = new AudioContext();
+  private audioSource = this.audioContext.createBufferSource();
+  private audioGain = this.audioContext.createGain();
   isPlaying = false;
   volume: number = DEFAULT_VOLUME;
 
-  constructor(rootStore) {
+  constructor(rootStore: RootStore) {
     makeObservable(this, {
       isPlaying: observable,
       volume: observable,
@@ -70,8 +71,5 @@ export class AudioFlowStore {
     }
     this.volume = DEFAULT_VOLUME;
     this.isPlaying = false;
-    this.audioContext = null;
-    this.audioSource = null;
-    this.audioGain = null;
   };
 }

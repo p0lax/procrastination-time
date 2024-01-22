@@ -1,16 +1,15 @@
-import React from 'react';
 import cn from 'classnames';
-import { CardType } from '~src/services/types';
-import { useHistory } from 'react-router-dom';
-
+import { CardType } from 'services/types';
+import {  useNavigate } from 'react-router-dom';
 import styles from './Card.module.css';
+
 
 export default function Card(props: CardType) {
   const { id, title, description } = props;
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const goToScene = () => {
-    history.push(`/scene/${id}`);
+    navigate(`/scene/${id}`);
   };
 
   return (

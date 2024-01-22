@@ -1,16 +1,17 @@
 import { COUNTDOWN_SIZE } from './../sections/constants';
 import { makeObservable, observable, action } from 'mobx';
-import { SECOND } from '~src/sections/constants';
+import { SECOND } from 'sections/constants';
+import { RootStore } from './RootStore';
 
 export type TimerStatus = 'running' | 'paused';
 
 class TimerStore {
   rootStore;
-  timerId: ReturnType<typeof setTimeout> = null;
+  timerId: ReturnType<typeof setTimeout> | undefined;
   countdown: number = COUNTDOWN_SIZE;
   status: TimerStatus = 'paused';
 
-  constructor(rootStore) {
+  constructor(rootStore: RootStore) {
     makeObservable(this, {
       timerId: observable,
       countdown: observable,

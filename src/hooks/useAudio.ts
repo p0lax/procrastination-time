@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { roundOff } from '~src/utils/math';
+import { roundOff } from 'utils/math';
 
 const VOLUME_STEP = 0.1;
 const DEFAULT_VOLUME = 0.5;

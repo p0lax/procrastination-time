@@ -2,6 +2,7 @@
   width: 300px;
   margin-top: 20px;
   cursor: pointer;
+  padding: 0;
 }
 
 .imageWrapper {
