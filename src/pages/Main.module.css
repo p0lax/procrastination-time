@@ -1,0 +1,23 @@
+.container {
+  height: 100%;
+  padding: 10px;
+}
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 10px 30px 10px;
+}
+
+.title {
+  text-align: center;
+}
+
+@media screen and (max-device-width: 600px) {
+  .cards {
+    justify-content: center;
+  }
+}

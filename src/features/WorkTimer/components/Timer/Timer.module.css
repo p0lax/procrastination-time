@@ -1,0 +1,38 @@
+.timer {
+  position: absolute;
+  top: calc(50% - 150px);
+  left: calc(50% - 150px);
+  height: 300px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  
+  animation-play-state: paused;
+}
+
+.timer.running .timerValue {
+  animation-play-state: running;
+}
+
+.timerValue {
+  color: #fff;
+  font-size: 72px;
+  margin-top: -10px;
+  animation: timer_beat 1s ease-in-out infinite;
+  animation-delay: 0.5s;
+  animation-play-state: paused;
+}
+
+@keyframes timer_beat {
+  40%,
+  80% {
+    transform: none;
+  }
+  50% {
+    transform: scale(1.125);
+  }
+}
