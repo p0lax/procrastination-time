@@ -1,5 +1,4 @@
 import { signal } from "@preact/signals"
-import { getSound } from "services/audio.service";
 import { roundOff } from "utils/math";
 
 const VOLUME_STEP = 0.1;
@@ -54,9 +53,8 @@ const initAudio = async (id?: string) => {
     audioGain = audioContext.createGain();
     audioSource.loop = true;
     audioGain.gain.value = 1;
-  
-    const file = await getSound(`${id}_0`);
-    const fileBuffer = await audioContext.decodeAudioData(file.data);
+    const file = await fetch(`assets/sounds/${id}_0.mp3`);
+    const fileBuffer = await audioContext.decodeAudioData(await file.arrayBuffer());
     audioSource.buffer = fileBuffer;
     audioSource.connect(audioGain);
     audioGain.connect(audioContext.destination);
