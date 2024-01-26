@@ -1,6 +1,6 @@
 import cn from "classnames";
 import { CARDS } from "constants";
-import Card from "sections/Relax/Card/Card";
+import Card from "components/Card/Card";
 import styles from "./Main.module.css";
 
 const Main = () => {
