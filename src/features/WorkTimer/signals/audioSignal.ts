@@ -66,7 +66,13 @@ const initAudio = async (id?: string) => {
 
 }
 
-const reset = () => {
+const resetAudio = () => {
+  console.log('RESET');
+  if (!isInit) {
+    audioContext?.close();
+    audioSource?.stop();
+    isInit = true;
+  }
   isPlaying.value = false;
   volume.value = DEFAULT_VOLUME;
 }
@@ -78,5 +84,5 @@ export const audioSignal = {
   toggleAudio,
   levelUp, 
   levelDown,
-  reset
+  reset: resetAudio
 }
