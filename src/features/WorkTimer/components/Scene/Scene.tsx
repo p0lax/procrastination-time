@@ -1,36 +1,30 @@
 import cn from "classnames";
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { CARDS } from "constants";
 import { CardType } from "services/types";
-import { rootStore } from "stores";
 import SceneControls from "../SceneControls/SceneControls";
 import Timer from "../Timer/Timer";
 import styles from "./Scene.module.css";
 import { timerSignal } from "features/WorkTimer/signals/timerSignal";
-import audioPath from "assets/sounds/sea_1.mp3?url";
 import { audioSignal } from "features/WorkTimer/signals/audioSignal";
 
 const Scene = React.memo(() => {
   const { id } = useParams();
   const card: CardType | undefined = CARDS.find((item) => item.id === id);
   const { status, stopTimer, startTimer, resetTimer } = timerSignal;
-  const { setSong, toggleAudio } = audioSignal;
-  const ref = useRef<HTMLAudioElement>(null);
+  const { toggleAudio, reset } = audioSignal;
 
   useEffect(() => {
-    setSong(card?.id);
-    resetTimer();
+    return () => {
+      reset();
+      resetTimer();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log("audioPath", audioPath);
   const onTimerToggle = () => {
-    toggleAudio();
-    if (ref.current) {
-      ref.current.volume = 1;
-      ref.current.play();
-    }
+    toggleAudio(card?.id);
     if (status.value === "running") {
       stopTimer();
       return;
@@ -59,14 +53,7 @@ const Scene = React.memo(() => {
   return (
     <div className={cn("content", styles.scene)}>
       {image}
-      {/* <audio autoPlay controls>
-        <source src={audioPath} type="audio/mp3"></source>
-      </audio> */}
-      <SceneControls
-        url={card.id}
-        onPlay={onTimerToggle}
-        store={rootStore.audioStore}
-      />
+      <SceneControls onPlay={onTimerToggle} />
       <Timer />
     </div>
   );

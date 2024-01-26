@@ -5,19 +5,29 @@ import { roundOff } from "utils/math";
 const VOLUME_STEP = 0.1;
 const DEFAULT_VOLUME = 0.5;
 
-let audioContext = new AudioContext();
+let audioContext : AudioContext | undefined;
 let audioSource: AudioBufferSourceNode;
 let audioGain: GainNode;
+let isInit = true;
+
 const volume = signal(DEFAULT_VOLUME);
 const isPlaying = signal(false);
 
-const toggleAudio = async () => {
-  console.log('PLAY');
-  if (isPlaying.value) {
-    audioSource.stop();
-    isPlaying.value = false;
+const toggleAudio = async (id?: string) => {
+  if (isInit) {
+    await initAudio(id);
+    audioSource.start();
+    audioContext?.suspend();
+    isInit = false;
   }
-  audioSource.start();
+  
+  if (isPlaying.value) {
+    audioContext?.suspend();
+    isPlaying.value = false;
+    return;
+  }
+
+  audioContext?.resume();
   isPlaying.value = true;
 }
 
@@ -37,28 +47,34 @@ const levelDown = () => {
   }
 }
 
-const setSong = async (id?: string) => {
-  // const audioContext = new AudioContext();
-  audioSource = audioContext.createBufferSource();
-  audioGain = audioContext.createGain();
-  audioSource.loop = true;
-  audioGain.gain.value = 1;
-  const file = await getSound(`${id}_0`);
-  const fileBuffer = await audioContext.decodeAudioData(file.data);
-  audioSource.buffer = fileBuffer;
-  audioSource.connect(audioGain);
-  audioGain.connect(audioContext.destination);
+const initAudio = async (id?: string) => {
+  try {
+    audioContext = new AudioContext();
+    audioSource = audioContext.createBufferSource();
+    audioGain = audioContext.createGain();
+    audioSource.loop = true;
+    audioGain.gain.value = 1;
+  
+    const file = await getSound(`${id}_0`);
+    const fileBuffer = await audioContext.decodeAudioData(file.data);
+    audioSource.buffer = fileBuffer;
+    audioSource.connect(audioGain);
+    audioGain.connect(audioContext.destination);
+  } catch (ex) {
+    console.error(ex);
+  }
+
 }
 
 const reset = () => {
-  audioSource.stop();
   isPlaying.value = false;
   volume.value = DEFAULT_VOLUME;
 }
 
 export const audioSignal = {
+  isPlaying,
   volume,
-  setSong,
+  initAudio,
   toggleAudio,
   levelUp, 
   levelDown,

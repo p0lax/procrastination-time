@@ -1,38 +1,22 @@
 import cn from "classnames";
-import { observer } from "mobx-react";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { AudioFlowStore } from "stores/AudioFlowStore";
 import styles from "./SceneControls.module.css";
+import { audioSignal } from "features/WorkTimer/signals/audioSignal";
 
 interface SceneControlsProps {
-  store: AudioFlowStore;
-  url: string;
   onPlay: () => void;
 }
 
-function SceneControls(props: SceneControlsProps) {
-  const { store } = props;
-
-  useEffect(() => {
-    // store.initContext(props.url);
-
-    return () => {
-      store.reset();
-    };
-  }, []);
+function SceneControls({ onPlay }: SceneControlsProps) {
+  const { isPlaying, volume, levelDown, levelUp } = audioSignal;
 
   const navigate = useNavigate();
   const playClassName = cn("fas", styles.playIcon, styles.icon, {
-    "fa-play": !store.isPlaying,
-    "fa-pause": store.isPlaying,
+    "fa-play": !isPlaying.value,
+    "fa-pause": isPlaying.value,
   });
   const moveBack = () => {
     navigate(-1);
-  };
-  const onPlay = () => {
-    store.toggle();
-    props.onPlay();
   };
   return (
     <div className={styles.menuWrapper}>
@@ -46,15 +30,12 @@ function SceneControls(props: SceneControlsProps) {
         <i className={playClassName}></i>
       </div>
       <div className={styles.volumeWrapper}>
-        <span className={styles.value}>{store.volume * 100} % </span>
+        <span className={styles.value}>{volume.value * 100} % </span>
         <div className={styles.controls}>
-          <i
-            className={cn("fas fa-plus", styles.icon)}
-            onClick={store.levelUp}
-          ></i>
+          <i className={cn("fas fa-plus", styles.icon)} onClick={levelUp}></i>
           <i
             className={cn("fas fa-minus", styles.icon)}
-            onClick={store.levelDown}
+            onClick={levelDown}
           ></i>
         </div>
       </div>
@@ -62,4 +43,4 @@ function SceneControls(props: SceneControlsProps) {
   );
 }
 
-export default observer(SceneControls);
+export default SceneControls;
