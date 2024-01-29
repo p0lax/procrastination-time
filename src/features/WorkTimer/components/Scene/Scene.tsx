@@ -9,7 +9,7 @@ import { timerSignal } from 'features/WorkTimer/signals/timerSignal';
 import { audioSignal } from 'features/WorkTimer/signals/audioSignal';
 import { CARDS } from 'common.const';
 
-const Scene = React.memo(() => {
+const Scene = React.memo(function Scene() {
   const { id } = useParams();
   const card: CardType | undefined = CARDS.find((item) => item.id === id);
   const { status, stopTimer, startTimer, resetTimer } = timerSignal;
@@ -46,7 +46,7 @@ const Scene = React.memo(() => {
       </figure>
     ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [status.value]
+    [status.value],
   );
 
   if (!card) {

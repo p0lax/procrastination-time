@@ -26,19 +26,34 @@ function SceneControls({ status, onPlay, onStartTimer }: SceneControlsProps) {
       <div className={styles.buttonWrapper}>
         <Icon type="back" onClick={moveBack} />
       </div>
-      <div className={styles.buttonWrapper} onClick={onStartTimer}>
-        <Icon type={status.value === 'running' ? 'pause' : 'play'} />
+      <div className={styles.buttonWrapper}>
+        <Icon
+          aria-label="start timer"
+          onClick={onStartTimer}
+          type={status.value === 'running' ? 'pause' : 'play'}
+        />
       </div>
       <div className={styles.volumeControl}>
         <span className={styles.value}>{volume.value * 100} % </span>
         <div className={styles.controls}>
-          <Icon type="plus" size="md" onClick={levelUp} />
-          <Icon type="minus" size="md" onClick={levelDown} />
+          <Icon
+            type="plus"
+            size="md"
+            aria-label="increase volume"
+            onClick={levelUp}
+          />
+          <Icon
+            type="minus"
+            size="md"
+            aria-label="decrease volume"
+            onClick={levelDown}
+          />
         </div>
       </div>
       <div className={cn(styles.buttonWrapper, styles.musicControl)}>
         <Icon
           size="md"
+          aria-label="turn on background music"
           type={isPlaying.value ? 'speakerOn' : 'speakerOff'}
           onClick={onPlay}
         />

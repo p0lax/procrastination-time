@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import Play from './svg/play.svg?react';
 import Pause from './svg/pause.svg?react';
 import Back from './svg/back.svg?react';
@@ -7,6 +8,7 @@ import SpeakerOn from './svg/speakerOn.svg?react';
 import SpeakerOff from './svg/speakerOff.svg?react';
 import cn from 'classnames';
 import styles from './Icon.module.css';
+import { KeyboardEvent } from 'react';
 
 const ICON_MAP = {
   play: Play,
@@ -20,18 +22,26 @@ const ICON_MAP = {
 
 type IconType = keyof typeof ICON_MAP;
 
-type IconProps = {
+interface IconProps extends React.HTMLAttributes<HTMLSpanElement> {
   type: IconType;
   size?: 'lg' | 'md' | 'sm';
   onClick?: () => void;
-};
+}
 
 const Icon = ({ type, size = 'lg', onClick }: IconProps) => {
   const IconComponent = ICON_MAP[type];
+  const onKeyDown = (event: KeyboardEvent<HTMLSpanElement>) => {
+    if (event.key === 'Enter') {
+      onClick?.();
+    }
+  };
   return (
     <span
       className={cn(styles.icon, { [styles[size]]: true })}
       onClick={onClick}
+      onKeyDown={onKeyDown}
+      role="button"
+      tabIndex={0}
     >
       <IconComponent />
     </span>
