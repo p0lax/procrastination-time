@@ -57,4 +57,4 @@ export const CARDS = [
 ];
 
 export const SECOND = 1000;
-export const COUNTDOWN_SIZE = 0.5 * 60 * SECOND;
+export const COUNTDOWN_SIZE = 25 * 60 * SECOND;
