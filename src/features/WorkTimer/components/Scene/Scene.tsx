@@ -1,13 +1,13 @@
-import cn from "classnames";
-import React, { useEffect, useMemo } from "react";
-import { useParams } from "react-router-dom";
-import { CardType } from "services/types";
-import SceneControls from "../SceneControls/SceneControls";
-import Timer from "../Timer/Timer";
-import styles from "./Scene.module.css";
-import { timerSignal } from "features/WorkTimer/signals/timerSignal";
-import { audioSignal } from "features/WorkTimer/signals/audioSignal";
-import { CARDS } from "common.const";
+import cn from 'classnames';
+import React, { useEffect, useMemo } from 'react';
+import { useParams } from 'react-router-dom';
+import { CardType } from 'services/types';
+import SceneControls from '../SceneControls/SceneControls';
+import Timer from '../Timer/Timer';
+import styles from './Scene.module.css';
+import { timerSignal } from 'features/WorkTimer/signals/timerSignal';
+import { audioSignal } from 'features/WorkTimer/signals/audioSignal';
+import { CARDS } from 'common.const';
 
 const Scene = React.memo(() => {
   const { id } = useParams();
@@ -24,17 +24,20 @@ const Scene = React.memo(() => {
   }, []);
 
   const onTimerToggle = () => {
-    toggleAudio(card?.id);
-    if (status.value === "running") {
+    if (status.value === 'running') {
       stopTimer();
       return;
     }
     startTimer();
   };
 
-  const imageClassName = cn("image", styles.image, {
-    [styles.running]: status.value === "running",
+  const imageClassName = cn('image', styles.image, {
+    [styles.running]: status.value === 'running',
   });
+
+  const onPlay = () => {
+    toggleAudio(card?.id);
+  };
 
   const image = useMemo(
     () => (
@@ -51,9 +54,13 @@ const Scene = React.memo(() => {
   }
 
   return (
-    <div className={cn("content", styles.scene)}>
+    <div className={cn('content', styles.scene)}>
       {image}
-      <SceneControls onPlay={onTimerToggle} />
+      <SceneControls
+        status={status}
+        onPlay={onPlay}
+        onStartTimer={onTimerToggle}
+      />
       <Timer />
     </div>
   );
