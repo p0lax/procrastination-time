@@ -38,7 +38,7 @@ div.scene figure.image {
 
 @media screen and (max-device-width: 600px) {
   .scene {
-    background-color: #fffaeb;
+    background-color: #303030;
   }
 
   div.scene figure.image {
