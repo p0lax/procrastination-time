@@ -1,7 +1,7 @@
 import cn from "classnames";
-import { CARDS } from "constants";
 import Card from "components/Card/Card";
 import styles from "./Main.module.css";
+import { CARDS } from "common.const";
 
 const Main = () => {
   return (

@@ -1,7 +1,8 @@
-import cn from "classnames";
-import { useNavigate } from "react-router-dom";
-import styles from "./SceneControls.module.css";
-import { audioSignal } from "features/WorkTimer/signals/audioSignal";
+import cn from 'classnames';
+import { useNavigate } from 'react-router-dom';
+import styles from './SceneControls.module.css';
+import { audioSignal } from 'features/WorkTimer/signals/audioSignal';
+import Icon from 'components/Icon/Icon';
 
 interface SceneControlsProps {
   onPlay: () => void;
@@ -9,12 +10,8 @@ interface SceneControlsProps {
 
 function SceneControls({ onPlay }: SceneControlsProps) {
   const { isPlaying, volume, levelDown, levelUp } = audioSignal;
-
   const navigate = useNavigate();
-  const playClassName = cn("fas", styles.playIcon, styles.icon, {
-    "fa-play": !isPlaying.value,
-    "fa-pause": isPlaying.value,
-  });
+
   const moveBack = () => {
     navigate(-1);
   };
@@ -22,19 +19,19 @@ function SceneControls({ onPlay }: SceneControlsProps) {
     <div className={styles.menuWrapper}>
       <div className={styles.backItemWrapper}>
         <i
-          className={cn("fas fa-long-arrow-alt-left", styles.backBtn)}
+          className={cn('fas fa-long-arrow-alt-left', styles.backBtn)}
           onClick={moveBack}
         ></i>
       </div>
       <div className={styles.playWrapper} onClick={onPlay}>
-        <i className={playClassName}></i>
+        <Icon type={isPlaying.value ? 'pause' : 'play'} />
       </div>
       <div className={styles.volumeWrapper}>
         <span className={styles.value}>{volume.value * 100} % </span>
         <div className={styles.controls}>
-          <i className={cn("fas fa-plus", styles.icon)} onClick={levelUp}></i>
+          <i className={cn('fas fa-plus', styles.icon)} onClick={levelUp}></i>
           <i
-            className={cn("fas fa-minus", styles.icon)}
+            className={cn('fas fa-minus', styles.icon)}
             onClick={levelDown}
           ></i>
         </div>

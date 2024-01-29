@@ -1,6 +1,9 @@
+
+
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import svgr from "vite-plugin-svgr";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,7 +13,8 @@ export default defineConfig({
 				plugins: [['module:@preact/signals-react-transform']],
 			},
 		}),
-     tsconfigPaths()
+     tsconfigPaths(),
+     svgr()
   ],
   server: {
     port: 3000

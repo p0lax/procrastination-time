@@ -1,5 +1,5 @@
 import { signal } from "@preact/signals";
-import { COUNTDOWN_SIZE, SECOND } from "constants";
+import { COUNTDOWN_SIZE, SECOND } from "common.const";
 
 export type TimerStatus = 'running' | 'paused';
 export interface TimerSignal {
@@ -11,14 +11,6 @@ export interface TimerSignal {
 let timerId: ReturnType<typeof setTimeout> | undefined = undefined;
 const status = signal<TimerStatus>('paused');
 const time = signal<number>(COUNTDOWN_SIZE);
-
-
-// export const timerSignal = signal<TimerSignal>({
-//   timerId: undefined,
-//   countdown: COUNTDOWN_SIZE,
-//   status: 'paused'
-// });
-
 
 const start = () => {
   timerId = setInterval(() => {
@@ -33,6 +25,10 @@ const stop = () => {
 };
 
 const decrement = () => {
+  if (time.value <= 0) {
+    reset();
+    return;
+  }
   time.value -= SECOND;
 };
 

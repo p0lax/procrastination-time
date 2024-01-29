@@ -1,13 +1,13 @@
 import cn from "classnames";
 import React, { useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { CARDS } from "constants";
 import { CardType } from "services/types";
 import SceneControls from "../SceneControls/SceneControls";
 import Timer from "../Timer/Timer";
 import styles from "./Scene.module.css";
 import { timerSignal } from "features/WorkTimer/signals/timerSignal";
 import { audioSignal } from "features/WorkTimer/signals/audioSignal";
+import { CARDS } from "common.const";
 
 const Scene = React.memo(() => {
   const { id } = useParams();
