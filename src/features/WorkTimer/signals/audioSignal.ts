@@ -1,10 +1,10 @@
-import { signal } from "@preact/signals"
-import { roundOff } from "utils/math";
+import { signal } from '@preact/signals';
+import { roundOff } from 'utils/math';
 
 const VOLUME_STEP = 0.1;
 const DEFAULT_VOLUME = 0.5;
 
-let audioContext : AudioContext | undefined;
+let audioContext: AudioContext | undefined;
 let audioSource: AudioBufferSourceNode;
 let audioGain: GainNode;
 let isInit = true;
@@ -19,7 +19,7 @@ const toggleAudio = async (id?: string) => {
     audioContext?.suspend();
     isInit = false;
   }
-  
+
   if (isPlaying.value) {
     audioContext?.suspend();
     isPlaying.value = false;
@@ -28,7 +28,7 @@ const toggleAudio = async (id?: string) => {
 
   audioContext?.resume();
   isPlaying.value = true;
-}
+};
 
 const levelUp = () => {
   if (volume.value < 1) {
@@ -36,7 +36,7 @@ const levelUp = () => {
     audioGain.gain.value = value;
     volume.value = value;
   }
-}
+};
 
 const levelDown = () => {
   if (volume.value > 0) {
@@ -44,7 +44,7 @@ const levelDown = () => {
     audioGain.gain.value = value;
     volume.value = value;
   }
-}
+};
 
 const initAudio = async (id?: string) => {
   try {
@@ -61,11 +61,9 @@ const initAudio = async (id?: string) => {
   } catch (ex) {
     console.error(ex);
   }
-
-}
+};
 
 const resetAudio = () => {
-  console.log('RESET');
   if (!isInit) {
     audioContext?.close();
     audioSource?.stop();
@@ -73,14 +71,14 @@ const resetAudio = () => {
   }
   isPlaying.value = false;
   volume.value = DEFAULT_VOLUME;
-}
+};
 
 export const audioSignal = {
   isPlaying,
   volume,
   initAudio,
   toggleAudio,
-  levelUp, 
+  levelUp,
   levelDown,
-  reset: resetAudio
-}
+  reset: resetAudio,
+};

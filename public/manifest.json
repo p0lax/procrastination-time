@@ -1,0 +1,50 @@
+{
+  "id": "/",
+  "scope": "/",
+  "name": "Work Time",
+  "display": "standalone",
+  "start_url": "/",
+  "short_name": "starter",
+  "theme_color": "#E1477E",
+  "description": "Manage you time effieciently with Work Time. Application will allow you to set up work/relax intervals",
+  "orientation": "any",
+  "background_color": "#E1477E",
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "display_override": ["window-controls-overlay"],
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  },
+  "icons": [
+    {
+      "src": "assets/icons/logo.1024.jpeg",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/logo.1024.jpeg",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/logo.1024.jpeg",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/logo.1024.jpeg",
+      "sizes": "24x24",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/screenshots/screen.png",
+      "sizes": "1617x1012",
+      "type": "image/png"
+    }
+  ],
+  "features": ["Cross Platform", "fast", "simple"],
+  "categories": ["social"],
+  "shortcuts": []
+}
