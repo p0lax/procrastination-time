@@ -1,30 +1,20 @@
-# React + TypeScript + Vite
+# Flow time
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Motivation
 
-Currently, two official plugins are available:
+Once upon a time I've found that application I've gotten used to dramatically changed interface and became inconvenient. So, I've started developing my own app and this way have found it a pretty interesting possibility to study working with sound in a browser
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### What's it?
 
-## Expanding the ESLint configuration
+This is a small front-end application for tracking work activities and better immersion in a flow state via listening to some monotone sounds
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Tasks
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- [x] Add predefined sounds of nature and city
+- [x] Add background images and their animation
+- [x] Add 25 minutes timer with CSS animation
+- [x] Correct restarting of timer
+- [ ] Make application installable to desctop and mobile
+- [ ] Add end-time sounds
+- [ ] Add possibility to change timer size
+- [ ] Merge sound controls into one

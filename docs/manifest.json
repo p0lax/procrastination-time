@@ -1,0 +1,56 @@
+{
+  "id": "/",
+  "scope": "/",
+  "name": "Flow Time",
+  "display": "standalone",
+  "start_url": "/",
+  "short_name": "Flow Time",
+  "theme_color": "#48c78e",
+  "description": "Manage you time effieciently with Flow Time. Application will allow you to set up work/relax intervals",
+  "orientation": "any",
+  "background_color": "#48c78e",
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "display_override": ["window-controls-overlay"],
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  },
+  "icons": [
+    {
+      "src": "assets/icons/logo.1024.jpeg",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/logo.1024.jpeg",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/logo.1024.jpeg",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/logo.1024.jpeg",
+      "sizes": "24x24",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/screenshots/screenshot.01.png",
+      "sizes": "1919x916",
+      "form_factor": "wide",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/screenshots/screenshot.02.png",
+      "sizes": "1217x860",
+      "type": "image/png"
+    }
+  ],
+  "features": ["Cross Platform", "fast", "simple"],
+  "categories": ["social"],
+  "shortcuts": []
+}
