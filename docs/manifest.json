@@ -3,7 +3,7 @@
   "scope": "/",
   "name": "Flow Time",
   "display": "standalone",
-  "start_url": "/",
+  "start_url": "/procrastination-time/",
   "short_name": "Flow Time",
   "theme_color": "#48c78e",
   "description": "Manage you time effieciently with Flow Time. Application will allow you to set up work/relax intervals",
