@@ -6,6 +6,9 @@ import Plus from './svg/plus.svg?react';
 import Minus from './svg/minus.svg?react';
 import SpeakerOn from './svg/speakerOn.svg?react';
 import SpeakerOff from './svg/speakerOff.svg?react';
+import Spin from './svg/refresh.svg?react';
+import ArrowUp from './svg/arrowUp.svg?react';
+import ArrowDown from './svg/arrowDown.svg?react';
 import cn from 'classnames';
 import styles from './Icon.module.css';
 import { KeyboardEvent } from 'react';
@@ -18,6 +21,9 @@ const ICON_MAP = {
   minus: Minus,
   speakerOn: SpeakerOn,
   speakerOff: SpeakerOff,
+  spin: Spin,
+  arrowUp: ArrowUp,
+  arrowDown: ArrowDown,
 };
 
 type IconType = keyof typeof ICON_MAP;
@@ -25,10 +31,11 @@ type IconType = keyof typeof ICON_MAP;
 interface IconProps extends React.HTMLAttributes<HTMLSpanElement> {
   type: IconType;
   size?: 'lg' | 'md' | 'sm';
+  disabled?: boolean;
   onClick?: () => void;
 }
 
-const Icon = ({ type, size = 'lg', onClick }: IconProps) => {
+const Icon = ({ type, size = 'lg', disabled = false, onClick }: IconProps) => {
   const IconComponent = ICON_MAP[type];
   const onKeyDown = (event: KeyboardEvent<HTMLSpanElement>) => {
     if (event.key === 'Enter') {
@@ -37,7 +44,7 @@ const Icon = ({ type, size = 'lg', onClick }: IconProps) => {
   };
   return (
     <span
-      className={cn(styles.icon, { [styles[size]]: true })}
+      className={cn(styles.icon, { [styles[size]]: true, [styles.disabled]: disabled })}
       onClick={onClick}
       onKeyDown={onKeyDown}
       role="button"

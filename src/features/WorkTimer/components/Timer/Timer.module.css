@@ -25,6 +25,7 @@
   animation: timer_beat 1s ease-in-out infinite;
   animation-delay: 0.5s;
   animation-play-state: paused;
+  user-select: none;
 }
 
 @keyframes timer_beat {
@@ -39,10 +40,10 @@
 
 @media screen and (max-device-width: 600px) {
   .timer {
-    top: calc(50% - 100px);
-    left: calc(50% - 100px);
-    height: 200px;
-    width: 200px;
+    top: calc(50% - 110px);
+    left: calc(50% - 110px);
+    height: 220px;
+    width: 220px;
   }
 
   .timerValue {

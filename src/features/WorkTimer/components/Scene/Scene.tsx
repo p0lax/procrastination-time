@@ -8,12 +8,14 @@ import styles from './Scene.module.css';
 import { timerSignal } from 'features/WorkTimer/signals/timerSignal';
 import { audioSignal } from 'features/WorkTimer/signals/audioSignal';
 import { CARDS } from 'common.const';
+import { useLoadingState } from 'hooks/useLoadingState';
 
 const Scene = React.memo(function Scene() {
   const { id } = useParams();
   const card: CardType | undefined = CARDS.find((item) => item.id === id);
   const { status, stopTimer, startTimer, resetTimer } = timerSignal;
   const { toggleAudio, reset } = audioSignal;
+  const { loading, setLoading } = useLoadingState();
 
   useEffect(() => {
     return () => {
@@ -35,8 +37,10 @@ const Scene = React.memo(function Scene() {
     [styles.running]: status.value === 'running',
   });
 
-  const onPlay = () => {
-    toggleAudio(card?.id);
+  const onPlay = async () => {
+    setLoading(true);
+    await toggleAudio(card?.id);
+    setLoading(false);
   };
 
   const image = useMemo(
@@ -56,11 +60,7 @@ const Scene = React.memo(function Scene() {
   return (
     <div className={cn('content', styles.scene)}>
       {image}
-      <SceneControls
-        status={status}
-        onPlay={onPlay}
-        onStartTimer={onTimerToggle}
-      />
+      <SceneControls status={status} onPlay={onPlay} onStartTimer={onTimerToggle} isAudioLoading={loading} />
       <Timer />
     </div>
   );

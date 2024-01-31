@@ -7,17 +7,17 @@ const DEFAULT_VOLUME = 0.5;
 let audioContext: AudioContext | undefined;
 let audioSource: AudioBufferSourceNode;
 let audioGain: GainNode;
-let isInit = true;
 
 const volume = signal(DEFAULT_VOLUME);
 const isPlaying = signal(false);
+const isReady = signal(false);
 
 const toggleAudio = async (id?: string) => {
-  if (isInit) {
+  if (!isReady.value) {
     await initAudio(id);
     audioSource.start();
     audioContext?.suspend();
-    isInit = false;
+    isReady.value = true;
   }
 
   if (isPlaying.value) {
@@ -64,16 +64,17 @@ const initAudio = async (id?: string) => {
 };
 
 const resetAudio = () => {
-  if (!isInit) {
+  if (!isReady.value) {
     audioContext?.close();
     audioSource?.stop();
-    isInit = true;
+    isReady.value = false;
   }
   isPlaying.value = false;
   volume.value = DEFAULT_VOLUME;
 };
 
 export const audioSignal = {
+  isReady,
   isPlaying,
   volume,
   initAudio,

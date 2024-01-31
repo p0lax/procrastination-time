@@ -43,9 +43,7 @@ div.scene figure.image {
   }
 
   div.scene figure.image {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    filter: blur(15px);
   }
 
   .menuWrapper {

@@ -23,11 +23,11 @@
 
 .volumeControl {
   flex-direction: row;
+  user-select: none;
 }
 
 .value {
   min-width: 50px;
-  margin-right: 10px;
   font-size: 1.1em;
   line-height: 1.1em;
 }
@@ -39,6 +39,7 @@
 }
 
 .musicControl {
+  flex-direction: row;
   position: fixed;
   bottom: 20px;
   right: calc(50% - 50px);
