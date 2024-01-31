@@ -12,7 +12,7 @@ export default function Card(props: CardProps) {
     <Link className={cn('card', styles.card)} to={`/scene/${id}`}>
       <div className={cn('card-image', styles.imageWrapper)}>
         <figure className="image">
-          <img src={`./assets/images/${id}_0.jpg`} alt={title} />
+          <img src={`./assets/thumbnails/${id}_0.jpg`} alt={title} />
         </figure>
       </div>
       <div className="card-content">
