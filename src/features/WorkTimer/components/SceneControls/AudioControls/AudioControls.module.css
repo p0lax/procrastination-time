@@ -1,0 +1,40 @@
+.volumeControl,
+.buttonWrapper {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.volumeControl {
+  flex-direction: row;
+  user-select: none;
+}
+
+.value {
+  min-width: 50px;
+  font-size: 1.1em;
+  line-height: 1.1em;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.musicControl {
+  flex-direction: row;
+  position: fixed;
+  bottom: 20px;
+  right: calc(50% - 50px);
+}
+
+@media screen and (max-device-width: 600px) {
+  .menuWrapper {
+    margin: 0 20px;
+  }
+}

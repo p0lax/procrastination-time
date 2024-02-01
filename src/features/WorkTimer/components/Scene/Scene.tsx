@@ -6,20 +6,22 @@ import SceneControls from '../SceneControls/SceneControls';
 import Timer from '../Timer/Timer';
 import styles from './Scene.module.css';
 import { timerSignal } from 'features/WorkTimer/signals/timerSignal';
-import { audioSignal } from 'features/WorkTimer/signals/audioSignal';
 import { CARDS } from 'common.const';
-import { useLoadingState } from 'hooks/useLoadingState';
+// import { useLoadingState } from 'hooks/useLoadingState';
+// import { useAudio } from './useAudio.hook';
 
 const Scene = React.memo(function Scene() {
   const { id } = useParams();
   const card: CardType | undefined = CARDS.find((item) => item.id === id);
   const { status, stopTimer, startTimer, resetTimer } = timerSignal;
-  const { toggleAudio, reset } = audioSignal;
-  const { loading, setLoading } = useLoadingState();
+  // const { toggleAudio, reset } = audioSignal;
+  // const { audionRef, isPlaying, volumeUp, volumeDown, toggleAudio } = useAudio();
+  // const { loading, setLoading } = useLoadingState();
+  // const audionRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     return () => {
-      reset();
+      // reset();
       resetTimer();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -37,11 +39,9 @@ const Scene = React.memo(function Scene() {
     [styles.running]: status.value === 'running',
   });
 
-  const onPlay = async () => {
-    setLoading(true);
-    await toggleAudio(card?.id);
-    setLoading(false);
-  };
+  // const onPlay = async () => {
+  //   toggleAudio();
+  // };
 
   const image = useMemo(
     () => (
@@ -60,7 +60,7 @@ const Scene = React.memo(function Scene() {
   return (
     <div className={cn('content', styles.scene)}>
       {image}
-      <SceneControls status={status} onPlay={onPlay} onStartTimer={onTimerToggle} isAudioLoading={loading} />
+      <SceneControls status={status} onStartTimer={onTimerToggle} card={card} />
       <Timer />
     </div>
   );
