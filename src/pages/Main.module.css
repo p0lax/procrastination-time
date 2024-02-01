@@ -16,6 +16,10 @@
   text-align: center;
 }
 
+.container .modalContent {
+  width: 340px;
+}
+
 @media screen and (max-device-width: 600px) {
   .cards {
     justify-content: center;

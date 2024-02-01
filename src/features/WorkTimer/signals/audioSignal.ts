@@ -14,6 +14,7 @@ const isReady = signal(false);
 
 const toggleAudio = async (id?: string) => {
   if (!isReady.value) {
+    console.log('INIT');
     await initAudio(id);
     audioSource.start();
     audioContext?.suspend();
@@ -64,7 +65,7 @@ const initAudio = async (id?: string) => {
 };
 
 const resetAudio = () => {
-  if (!isReady.value) {
+  if (isReady.value) {
     audioContext?.close();
     audioSource?.stop();
     isReady.value = false;

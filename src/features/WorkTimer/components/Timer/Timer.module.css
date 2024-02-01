@@ -12,6 +12,7 @@
   border-radius: 50%;
 
   animation-play-state: paused;
+  user-select: none;
 }
 
 .timer.running .timerValue {
@@ -25,7 +26,6 @@
   animation: timer_beat 1s ease-in-out infinite;
   animation-delay: 0.5s;
   animation-play-state: paused;
-  user-select: none;
 }
 
 @keyframes timer_beat {

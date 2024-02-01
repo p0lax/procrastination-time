@@ -15,13 +15,17 @@ function Timer() {
 
   return (
     <div className={timerClassName}>
-      {!isRunning && <Icon type="arrowUp" aria-label="prev timer size" onClick={() => prevTimer(timerSize.value)} />}
+      {!isRunning && (
+        <Icon type="arrowUp" aria-label="prev timer size" size="md" onClick={() => prevTimer(timerSize.value)} />
+      )}
       &nbsp;
       <div className={styles.timerValue}>
         {zeroPad(displayTime.getMinutes())}:{zeroPad(displayTime.getSeconds())}
       </div>
       &nbsp;
-      {!isRunning && <Icon type="arrowDown" aria-label="next timer size" onClick={() => nextTimer(timerSize.value)} />}
+      {!isRunning && (
+        <Icon type="arrowDown" aria-label="next timer size" size="md" onClick={() => nextTimer(timerSize.value)} />
+      )}
     </div>
   );
 }
