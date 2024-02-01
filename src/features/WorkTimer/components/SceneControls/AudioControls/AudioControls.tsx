@@ -20,7 +20,7 @@ const AudioControls = ({ card }: AudioControlsProps) => {
 
   return (
     <>
-      <audio ref={audionRef} style={{ position: 'absolute', top: 100, zIndex: 11 }}>
+      <audio ref={audionRef} style={{ position: 'absolute', top: 100, zIndex: 11 }} loop>
         <source src={card.soundURL} type="audio/mp3" onLoad={onLoad} />
       </audio>
       <div className={styles.volumeControl}>

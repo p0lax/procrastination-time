@@ -1,5 +1,4 @@
-.volumeControl,
-.buttonWrapper {
+.volumeControl {
   width: 100px;
   height: 100px;
   display: flex;
@@ -26,15 +25,19 @@
   align-items: center;
 }
 
+.buttonWrapper {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 .musicControl {
   flex-direction: row;
   position: fixed;
   bottom: 20px;
   right: calc(50% - 50px);
-}
-
-@media screen and (max-device-width: 600px) {
-  .menuWrapper {
-    margin: 0 20px;
-  }
 }

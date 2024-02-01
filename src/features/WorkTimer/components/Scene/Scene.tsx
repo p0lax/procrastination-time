@@ -14,14 +14,9 @@ const Scene = React.memo(function Scene() {
   const { id } = useParams();
   const card: CardType | undefined = CARDS.find((item) => item.id === id);
   const { status, stopTimer, startTimer, resetTimer } = timerSignal;
-  // const { toggleAudio, reset } = audioSignal;
-  // const { audionRef, isPlaying, volumeUp, volumeDown, toggleAudio } = useAudio();
-  // const { loading, setLoading } = useLoadingState();
-  // const audionRef = useRef<HTMLAudioElement>(null);
-
+  console.log('--', CARDS);
   useEffect(() => {
     return () => {
-      // reset();
       resetTimer();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

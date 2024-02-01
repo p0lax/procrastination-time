@@ -1,16 +1,16 @@
 /* eslint-disable import/no-unresolved */
 import { CardType } from 'services/types';
-import rain from './assets/sounds/rain_0.mp3?url';
-import forest from './assets/sounds/forest_0.mp3?url';
-import morning from './assets/sounds/morning_0.mp3?url';
-import train from './assets/sounds/train_0.mp3?url';
-import winter from './assets/sounds/winter_0.mp3?url';
-import road from './assets/sounds/road_0.mp3?url';
-import sea from './assets/sounds/sea_0.mp3?url';
-import village from './assets/sounds/village_0.mp3?url';
-import wet_road from './assets/sounds/wet_road_0.mp3?url';
-import dinner from './assets/sounds/dinner_0.mp3?url';
-import train_station from './assets/sounds/train_station_0.mp3?url';
+import rain from 'assets/sounds/rain_0.mp3?url';
+import forest from 'assets/sounds/forest_0.mp3?url';
+import morning from 'assets/sounds/morning_0.mp3?url';
+import train from 'assets/sounds/train_0.mp3?url';
+import winter from 'assets/sounds/winter_0.mp3?url';
+import road from 'assets/sounds/road_0.mp3?url';
+import sea from 'assets/sounds/sea_0.mp3?url';
+import village from 'assets/sounds/village_0.mp3?url';
+import wet_road from 'assets/sounds/wet_road_0.mp3?url';
+import dinner from 'assets/sounds/dinner_0.mp3?url';
+import train_station from 'assets/sounds/train_station_0.mp3?url';
 
 export const CARDS: CardType[] = [
   {
