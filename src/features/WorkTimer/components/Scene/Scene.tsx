@@ -7,14 +7,12 @@ import Timer from '../Timer/Timer';
 import styles from './Scene.module.css';
 import { timerSignal } from 'features/WorkTimer/signals/timerSignal';
 import { CARDS } from 'common.const';
-// import { useLoadingState } from 'hooks/useLoadingState';
-// import { useAudio } from './useAudio.hook';
 
 const Scene = React.memo(function Scene() {
   const { id } = useParams();
   const card: CardType | undefined = CARDS.find((item) => item.id === id);
   const { status, stopTimer, startTimer, resetTimer } = timerSignal;
-  console.log('--', CARDS);
+
   useEffect(() => {
     return () => {
       resetTimer();
@@ -33,10 +31,6 @@ const Scene = React.memo(function Scene() {
   const imageClassName = cn('image', styles.image, {
     [styles.running]: status.value === 'running',
   });
-
-  // const onPlay = async () => {
-  //   toggleAudio();
-  // };
 
   const image = useMemo(
     () => (
